@@ -8,11 +8,11 @@
 		<version>2.5.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>br.edu.ifsp.arq.dw2s6</groupId>
-	<artifactId>controle-financeiro</artifactId>
+	<groupId>br.ifsp.arq.prs</groupId>
+	<artifactId>participares</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>controle-financeiro</name>
-	<description>Projeto da Disciplina de DW2S6</description>
+	<name>participares</name>
+	<description>Projeto da Disciplina de PRS</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
