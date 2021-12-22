@@ -1,8 +1,8 @@
 CREATE TABLE escolas (
-	codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+	codigo SERIAL PRIMARY KEY,
 	nome VARCHAR(100) NOT NULL,
 	endereco VARCHAR(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ;
 
 
 -- Centros de educação

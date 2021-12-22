@@ -1,12 +1,12 @@
 CREATE TABLE eventos (
-	codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-	codigo_da_escola BIGINT(20),
+	codigo SERIAL PRIMARY KEY,
+	codigo_da_escola BIGINT,
 	nome VARCHAR(100),
 	descricao VARCHAR(500),
 	data DATE NOT NULL,
 	local VARCHAR(100) NOT NULL,
     FOREIGN KEY(codigo_da_escola) REFERENCES escolas(codigo)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ;
 
 INSERT INTO eventos (codigo_da_escola, nome, data, local) 
        VALUES ('2', 'Festa da Primavera', '2022-09-22', 'No campus');
@@ -20,11 +20,12 @@ INSERT INTO eventos (codigo_da_escola, nome, data, local)
        VALUES ('3', 'Desfile Natalino', '2022-12-20', 'No campus');
 
 CREATE TABLE imagens(
-	codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-    codigo_do_evento BIGINT(20) NOT NULL,
+	codigo SERIAL PRIMARY KEY,
+    codigo_do_evento BIGINT NOT NULL,
 	link VARCHAR(500) NOT NULL,
     FOREIGN KEY(codigo_do_evento) REFERENCES eventos(codigo)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ;
+
 
 INSERT INTO imagens(codigo_do_evento, link)
 	VALUES ('1', 'imagem_1');
@@ -41,9 +42,9 @@ CREATE TABLE usuarios (
 	login VARCHAR(30) PRIMARY KEY,
 	senha VARCHAR(500) NOT NULL,
         tipo VARCHAR(13),
-	codigo_da_escola BIGINT(20),
+	codigo_da_escola BIGINT,
     FOREIGN KEY(codigo_da_escola) REFERENCES escolas(codigo)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ;
 
 INSERT INTO usuarios (login, senha, codigo_da_escola) values ('default', '$2a$10$PeDmWleCJSSfnRpzCQ44NeANshvCUEiBO6/ptLFcGOxad6Ab5w/AC', 1);
 INSERT INTO usuarios (login, senha, tipo, codigo_da_escola) values ('Isabel', '$2a$10$m5ZXDwhK.oFA3aWeLLw5BeX/Q/rFMhqz5ZVf32lJ235ta9sworXt6','ADMINISTRADOR', '2');
@@ -62,9 +63,10 @@ INSERT INTO usuarios (login, senha, tipo, codigo_da_escola) values ('Cleudecir C
 
 
 CREATE TABLE permissoes (
-	codigo BIGINT(20) PRIMARY KEY,
+	codigo BIGINT PRIMARY KEY,
 	descricao VARCHAR(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ;
+
 
 INSERT INTO permissoes (codigo, descricao)
 	VALUES (1, 'ROLE_PESQUISAR_EVENTO');
@@ -81,11 +83,11 @@ INSERT INTO permissoes (codigo, descricao)
 
 CREATE TABLE usuario_permissao (
 	login VARCHAR(30) NOT NULL,
-	codigo BIGINT(20) NOT NULL,
+	codigo BIGINT NOT NULL,
 	PRIMARY KEY (login, codigo),
 	FOREIGN KEY (login) REFERENCES usuarios(login),
 	FOREIGN KEY (codigo) REFERENCES permissoes(codigo)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ;
 
 INSERT INTO usuario_permissao (login, codigo)
 	VALUES ('Isabel', 1);
